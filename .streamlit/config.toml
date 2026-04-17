@@ -1,0 +1,6 @@
+[server]
+maxUploadSize = 10000
+enableStaticServing = true
+
+[browser]
+gatherUsageStats = false

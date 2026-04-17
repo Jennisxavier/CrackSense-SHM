@@ -1,0 +1,17 @@
+{
+  "name": "CrackSense SHM Dashboard",
+  "short_name": "CrackSense",
+  "description": "Structural Health Monitoring & Crack Detection Dashboard",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d1a",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

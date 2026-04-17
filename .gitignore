@@ -1,0 +1,21 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Virtual Env
+.env
+.venv
+env/
+venv.bak/
+ENV/
+
+# Streamlit
+.streamlit/*
+!.streamlit/config.toml
+
+# OS
+.DS_Store
+Thumbs.db
