@@ -1,6 +1,6 @@
 streamlit
-tensorflow-cpu==2.13.0
-ultralytics==8.0.0
+tensorflow-cpu
+ultralytics
 opencv-python-headless
 pandas
 scikit-learn
@@ -8,4 +8,4 @@ scikit-image
 matplotlib
 joblib
 scipy
-numpy
+numpy<2.0.0
