@@ -1,7 +1,7 @@
 setuptools
 streamlit
 tensorflow-cpu==2.16.1
-ultralytics==8.0.0
+ultralytics
 opencv-python-headless==4.8.0.74
 pandas
 scikit-learn
