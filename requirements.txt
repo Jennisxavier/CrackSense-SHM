@@ -1,3 +1,4 @@
+setuptools
 streamlit
 tensorflow-cpu==2.16.1
 ultralytics==8.0.0
