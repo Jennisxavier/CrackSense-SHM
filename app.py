@@ -34,6 +34,14 @@ for _layer_cls in [
     except Exception:
         pass
 
+import sys
+import keras
+if 'keras.src.models.functional' not in sys.modules:
+    try:
+        sys.modules['keras.src.models.functional'] = keras.src.engine.functional
+    except AttributeError:
+        pass
+
 import os
 import io
 import math
