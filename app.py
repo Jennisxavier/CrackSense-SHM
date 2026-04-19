@@ -35,6 +35,17 @@ def patched_signal(signum, handler):
         return _original_signal(signum, handler)
     return None
 signal.signal = patched_signal
+
+try:
+    import torch
+    _old_torch_load = torch.load
+    def _patched_torch_load(*args, **kwargs):
+        kwargs['weights_only'] = False
+        return _old_torch_load(*args, **kwargs)
+    torch.load = _patched_torch_load
+except ImportError:
+    pass
+
 import warnings
 warnings.filterwarnings("ignore")
 
