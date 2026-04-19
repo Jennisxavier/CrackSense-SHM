@@ -5,47 +5,7 @@
 ==============================================================================
 """
 
-# ── Keras compatibility patch (must run before any keras import) ──────────────
-# Strips unknown kwargs (e.g. quantization_config added in Keras 3.4+) so that
-# models saved with a newer Keras version load cleanly on older installs.
 import tensorflow as tf
-
-def _make_compat_from_config(layer_class):
-    original = layer_class.from_config.__func__
-    @classmethod
-    def _patched(cls, config):
-        config.pop('quantization_config', None)
-        config.pop('dtype_policy', None)
-        config.pop('optional', None)
-        if 'batch_shape' in config:
-            config['batch_input_shape'] = config.pop('batch_shape')
-        return original(cls, config)
-    return _patched
-
-for _layer_cls in [
-    tf.keras.layers.InputLayer,
-    tf.keras.layers.Dense,
-    tf.keras.layers.Conv1D,
-    tf.keras.layers.Conv2D,
-    tf.keras.layers.BatchNormalization,
-    tf.keras.layers.GlobalAveragePooling2D,
-    tf.keras.layers.Dropout,
-    tf.keras.layers.LSTM,
-    tf.keras.layers.GRU,
-]:
-    try:
-        _layer_cls.from_config = _make_compat_from_config(_layer_cls)
-    except Exception:
-        pass
-
-import sys
-import keras
-if 'keras.src.models.functional' not in sys.modules:
-    try:
-        sys.modules['keras.src.models.functional'] = keras.src.engine.functional
-    except AttributeError:
-        pass
-
 import os
 import io
 import math
