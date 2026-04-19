@@ -16,10 +16,14 @@ def _make_compat_from_config(layer_class):
     def _patched(cls, config):
         config.pop('quantization_config', None)
         config.pop('dtype_policy', None)
+        config.pop('optional', None)
+        if 'batch_shape' in config:
+            config['batch_input_shape'] = config.pop('batch_shape')
         return original(cls, config)
     return _patched
 
 for _layer_cls in [
+    tf.keras.layers.InputLayer,
     tf.keras.layers.Dense,
     tf.keras.layers.Conv1D,
     tf.keras.layers.Conv2D,
