@@ -7,6 +7,22 @@
 
 import tensorflow as tf
 import os
+import sys
+
+try:
+    import pkg_resources
+except ImportError:
+    class _MockPkgResources:
+        @staticmethod
+        def get_distribution(*args, **kwargs):
+            class _Dist:
+                version = "1.0.0"
+            return _Dist()
+        @staticmethod
+        def parse_version(v):
+            from packaging.version import Version
+            return Version(str(v))
+    sys.modules['pkg_resources'] = _MockPkgResources()
 import io
 import math
 import tempfile
