@@ -26,6 +26,15 @@ except ImportError:
 import io
 import math
 import tempfile
+import threading
+import signal
+
+_original_signal = signal.signal
+def patched_signal(signum, handler):
+    if threading.current_thread() is threading.main_thread():
+        return _original_signal(signum, handler)
+    return None
+signal.signal = patched_signal
 import warnings
 warnings.filterwarnings("ignore")
 
